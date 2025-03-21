@@ -102,6 +102,10 @@ camera-focus-peak/
 ├── backend/              # Python backend with OpenCV processing
 │   └── server.py
 ├── frontend/
+|   └── public/               # Static assets
+│       ├──exploreHD-Focus.mp4  # Sample video
+|       └── index.html           # HTML page for activating application
+|       └── manifest.json
 │   └── src/              # React application source code
 │       ├── components/   # React components
 |       |   ├── ui/
@@ -114,9 +118,10 @@ camera-focus-peak/
 │       ├── App.js        # Main application component
 |       |   index.css     # Overall CSS
 │       └── index.js      # React entry point
-├── public/               # Static assets
-│   ├── exploreHD-Focus.mp4  # Sample video
-|   └── index.html           # HTML page for activating application
+|   └── package-lock.json
+|   └── package.json
+|   └── postcss.config.js
+|   └── tailwind.config.js
 ├── install.sh            # Installation script
 ├── package-lock.json     # Houses all overarching dependencies
 ├── package.json          # Houses all dependencies on frontend
