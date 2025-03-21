@@ -1,8 +1,17 @@
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify, Response, send_from_directory
 import cv2
 import numpy as np
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="../frontend")
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder + '/public', 'index.html')
 
 @app.route('/process-video', methods=['POST'])
 def process_video():
@@ -45,4 +54,4 @@ def process_video():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=True, port=3000, threaded=True)
